@@ -1,0 +1,21 @@
+[submodule "submodules/fenix-ui-catalog"]
+	path = submodules/fenix-ui-catalog
+	url = https://github.com/FENIX-Platform/fenix-ui-catalog
+[submodule "submodules/fenix-ui-common"]
+	path = submodules/fenix-ui-common
+	url = https://github.com/FENIX-Platform/fenix-ui-common.git
+[submodule "submodules/fenix-ui-data-management"]
+	path = submodules/fenix-ui-data-management
+	url = https://github.com/FENIX-Platform/fenix-ui-data-management.git
+[submodule "submodules/fenix-ui-menu"]
+	path = submodules/fenix-ui-menu
+	url = https://github.com/FENIX-Platform/fenix-ui-menu.git
+[submodule "submodules/fenix-ui-metadata-editor"]
+	path = submodules/fenix-ui-metadata-editor
+	url = https://github.com/FENIX-Platform/fenix-ui-metadata-editor.git
+[submodule "submodules/fenix-ui-metadata-viewer"]
+	path = submodules/fenix-ui-metadata-viewer
+	url = https://github.com/FENIX-Platform/fenix-ui-metadata-viewer
+[submodule "submodules/fenix-ui-reports"]
+	path = submodules/fenix-ui-reports
+	url = https://github.com/FENIX-Platform/fenix-ui-reports.git
