@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "attrs": {
+        "id": "home"
+      },
+      "target": "./index.html#home",
+      "a_attrs" : {
+        "rel" : "external"
+      },
+      "label": {
+        "EN": "Home"
+      }
+    },
+    {
+      "attrs": {
+        "id": "datamng"
+      },
+      "a_attrs": {
+        "rel": "external"
+      },
+      "target": "./datamng.html",
+      "label": {
+        "EN": "Data Management"
+      }
+    }
+  ],
+  "rightItems": [
+    {
+      "attrs": {
+        "id": "login"
+      },
+      "label": {
+        "EN": "LOGIN"
+      }
+    },
+    {
+      "attrs": {
+        "id": "logout"
+      },
+      "label": {
+        "EN": "LOGOUT"
+      }
+    }
+  ],
+  "type": "static-top",
+  "brand": {
+    "target": "#"
+  }
+}

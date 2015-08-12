@@ -1,0 +1,6 @@
+{
+  "guest@faostat.org" : {
+      "name" : "Guest",
+      "password" : "guest"
+  }
+}
