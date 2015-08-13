@@ -65,10 +65,6 @@ define([
                         active: true,
                         container: s.BREADCRUMB_CONTAINER,
                         showHome: true
-                    },
-                    footer: {
-                        active: true,
-                        container: s.FOOTER_MENU_CONTAINER
                     }
                 },
                 menuConfAuth = _.extend({}, menuConf, {

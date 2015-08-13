@@ -9,7 +9,7 @@
 
   outline: none;
 
-  background-color: $rlm-box-bg;
+  background-color: $box-bg;
 
   @include fx-noshadow;
 
@@ -23,7 +23,7 @@
   &:focus{
     @include fx-noshadow;
     outline: none;
-    border-color: $rlm-buttons;  }
+    border-color: $buttons;  }
 
 }
 

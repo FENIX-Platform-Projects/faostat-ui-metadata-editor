@@ -1,8 +1,3 @@
-/* RLM - Data Management */
-
-#fx-catalog-submit-btn{
-  color: $fx-cool-blue;
-}
 
 
 .fx-catalog-form-module{
@@ -28,19 +23,6 @@
   }
 }
 
-/*TEMPORARY*/
-#fx-catalog-submit-btn.disabled {
-  color: $fx-cool-blue;
-}
-#fx-catalog-submit-btn {
-  color: white;
-}
-
-.fenix-result {
-  height: 250px;
-  overflow-y: hidden;
-}
-
 
 
 .fx-catalog-modular-filter-container{
@@ -58,7 +40,7 @@
   .fx-menu{
 
     background-image: none;
-    background-color: $rlm-box-bg;
+    background-color: $box-bg;
 
     .navbar-nav > li {
 
@@ -88,3 +70,12 @@
 
 
 }
+
+
+.fx-editor-modular-form-wrapper{
+  .btn.fx-button-reset{
+    border-color: transparent;
+
+  }
+}
+

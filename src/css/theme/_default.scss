@@ -1,4 +1,4 @@
-/* RLM - Base style File */
+/* Base style File */
 
 body{
 
@@ -6,9 +6,8 @@ body{
 
 }
 
-.rlm-logo-blue{
-  width: 117px;
-  height: 55px;
+hr {
+  border-color: $fenix-light-hr;
 }
 
 .truncate {
@@ -18,31 +17,63 @@ body{
   text-overflow: ellipsis;
 }
 
+
+$font-size: $standard-text-size;
+$line-height: 1.4;
+$lines-to-show: 2;
+
+.truncate-multi {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  width: 100%;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .upper{
   text-transform: uppercase;
 }
 
 .btn{
-  @include fx-border-radius(5);
+  @include fx-border-radius(0);
   height: 25px;
-  min-width: 100px;
+  //min-width: 100px;
   padding: 3px 12px;
   font-size: 12px;
   text-transform: uppercase;
   background-color: transparent;
-  border: 1px solid $rlm-buttons;
-  color: $rlm-buttons;
+  border: 1px solid $buttons;
+  color: $buttons;
   margin: 3px;
 
   &:hover{
-    background-color: $rlm-superlight-gray;
+    background-color: $superlight-gray;
     //border-color: transparent;
-    border: 1px solid $rlm-buttons;
-    color: $rlm-buttons;
+    border: 1px solid $buttons;
+    color: $buttons;
   }
 
 }
 
+
+
+.container {
+  background-color: white;
+}
+
+
+/* Typography */
+
+h1, h2, h3, h4, h5 {
+  //color: $fenix-text;
+  text-transform: uppercase;
+
+}
 
 
 /* TEMPORARY */
@@ -62,12 +93,12 @@ body{
 
 
 .btn-table-go, .btn-scores-go{
-  background-color: $rlm-buttons;
+  background-color: $buttons;
   color: white;
 
 
   &:hover, &:active, &:visited, &:focus{
-    background-color: $rlm-buttons;
+    background-color: $buttons;
     border-color: transparent;
     color: white;
   }

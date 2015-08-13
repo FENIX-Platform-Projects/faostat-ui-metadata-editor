@@ -42,6 +42,8 @@ define([
             //update State
             amplify.publish(E.STATE_CHANGE, {menu: 'home'});
 
+            return;
+
             this.initVariables();
 
             this.initComponents();
