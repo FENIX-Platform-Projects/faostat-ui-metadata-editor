@@ -1,6 +1,7 @@
 ﻿/*global define */
 
 define([
+        'jstree',
         "jquery",
         'chaplin',
         'fx-d-m/config/events',
@@ -20,6 +21,10 @@ define([
         }
 
         SearchTreeView.prototype.init = function (cnt) {
+
+
+
+
             this.$cnt = cnt;
 
             this.$cnt.html('<button type="button" id="btnDomainSelect">Select</button>');
@@ -28,7 +33,6 @@ define([
             //var me = this;
 
             btnDomSel.on('click', function () {
-                amplify.publish('searchTreeView_resourceSelected', { metadata: { uid: 'FAOSTAT_test1' } });
             });
         };
 

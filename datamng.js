@@ -71,6 +71,8 @@ require([
 
                     //TreeView overrides catalog
                     'fx-d-m/views/search-view': './config/submodules/fx-catalog/treeSelection/search-view_domains',
+                    'fx-d-m/views/search-template': './config/submodules/fx-catalog/treeSelection/searchTreeView.html',
+
                     'fx-cat-br/config/SearchTreeView': './config/submodules/fx-catalog/treeSelection/SearchTreeView'
                 },
 

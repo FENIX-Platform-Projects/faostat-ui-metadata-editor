@@ -1,18 +1,29 @@
 /*global define, amplify*/
 define([
+    'jquery',
     'chaplin',
     'fx-d-m/config/config',
     'fx-d-m/config/config-default',
     'fx-d-m/views/base/view',
-    'text!fx-d-m/templates/search.hbs',
+    'text!fx-d-m/views/search-template',
     'fx-cat-br/config/SearchTreeView',
     'fx-d-m/config/events',
     'i18n!fx-d-m/i18n/nls/ML_DataManagement',
     'amplify',
-    'pnotify'
-], function (Chaplin, C, DC, View, template, searchTreeView, Events, MLRes) {
+    'pnotify',
+    'jstree'
+], function ($, Chaplin, C, DC, View, template, searchTreeView, Events, MLRes) {
 
     'use strict';
+
+    var s = {
+        TREE_CONTAINER: "#domain-tree"
+    };
+
+    var c = {
+        FAOSTAT_URL:"http://faostat3.fao.org/wds/rest/groupsanddomains/faostatdb/E" ,
+        FAOSTAT_PREFIX_UID : "FAOSTAT_"
+    }
 
     var SearchView = View.extend({
 
@@ -36,8 +47,65 @@ define([
 
             this.bindEventListeners();
 
-            this.searchTW = new searchTreeView();
-            this.searchTW.init($('#catalog-container'));
+            this._initTree();
+
+        },
+
+        _initTree: function () {
+
+            $.get(c.FAOSTAT_URL, function (data) {
+
+                /* Buffer. */
+                var buffer = [];
+                var payload = [];
+                var json = data;
+
+                /* Iterate over domains. */
+                for (var i = 0; i < json.length; i++) {
+
+                    /* Create group node. */
+                    if ($.inArray(json[i][0], buffer) < 0) {
+                        buffer.push(json[i][0]);
+                        payload.push({
+                            id: json[i][0],
+                            text: json[i][1],
+                            parent: '#'
+                        });
+                    }
+
+                    /* Add domain node. */
+                    payload.push({
+                        id: json[i][2],
+                        text: json[i][3],
+                        parent: json[i][0]
+                    });
+                }
+
+                /* Init JSTree. */
+                $(s.TREE_CONTAINER).jstree({
+
+                    'plugins': ['unique', 'search', 'types', 'wholerow'],
+
+                    'core': {
+                        'data': payload,
+                        'themes': {
+                            'icons': false,
+                            'responsive': true
+                        }
+                    },
+
+                    'search': {
+                        'show_only_matches': true,
+                        'close_opened_onclear': false
+                    }
+
+                }).on('select_node.jstree', function (e, data) {
+
+                    amplify.publish('searchTreeView_resourceSelected', {metadata: {uid: c.FAOSTAT_PREFIX_UID + data.node.id}});
+
+                });
+            });
+
         },
 
         bindEventListeners: function () {
@@ -47,7 +115,7 @@ define([
         selectResource: function (res) {
             var succ = null;
             var err = function () {
-                new PNotify({ title: '', text: MLRes.errorLoadinResource, type: 'error' });
+                new PNotify({title: '', text: MLRes.errorLoadinResource, type: 'error'});
             }
 
             Chaplin.mediator.publish(Events.RESOURCE_SELECT, res, succ, err);
