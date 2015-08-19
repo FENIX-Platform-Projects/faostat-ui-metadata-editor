@@ -60,15 +60,18 @@ require([
                     'fx-d-m/config/config': './config/submodules/fx-data-mng/config',
 
                     "fx-d-m/routes": "./submodules/fenix-ui-data-management/src/js/routes/metadata",
-                    'fx-d-m/templates/landing' :"./submodules/fenix-ui-data-management/src/js/templates/landing/metadata.hbs",
-                    'fx-d-m/templates/resume' :"./submodules/fenix-ui-data-management/src/js/templates/resume/metadata.hbs",
+                    'fx-d-m/templates/landing': "./submodules/fenix-ui-data-management/src/js/templates/landing/metadata.hbs",
+                    'fx-d-m/templates/resume': "./submodules/fenix-ui-data-management/src/js/templates/resume/metadata.hbs",
 
-                    'fx-d-m/templates/site' : "./src/js/templates/site.hbs",
+                    'fx-d-m/templates/site': "./src/js/templates/site.hbs",
 
                     'fx-cat-br/config/config': './config/submodules/fx-catalog/config',
 
-                    'fx-submodules/config/baseConfig': './config/submodules/config_base'
+                    'fx-submodules/config/baseConfig': './config/submodules/config_base',
 
+                    //TreeView overrides catalog
+                    'fx-d-m/views/search-view': './config/submodules/fx-catalog/treeSelection/search-view_domains',
+                    'fx-cat-br/config/SearchTreeView': './config/submodules/fx-catalog/treeSelection/SearchTreeView'
                 },
 
                 // Underscore and Backbone are not AMD-capable per default,
