@@ -21,7 +21,7 @@ define([
         }
 
         SearchTreeView.prototype.init = function (cnt) {
-
+            /*
 
 
 
@@ -33,7 +33,7 @@ define([
             //var me = this;
 
             btnDomSel.on('click', function () {
-            });
+            });*/
         };
 
         return SearchTreeView;

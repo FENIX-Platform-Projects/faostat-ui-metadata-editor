@@ -9,10 +9,11 @@ define([
     'fx-cat-br/config/SearchTreeView',
     'fx-d-m/config/events',
     'i18n!fx-d-m/i18n/nls/ML_DataManagement',
+    'fx-d-m/components/resource-manager',
     'amplify',
     'pnotify',
     'jstree'
-], function ($, Chaplin, C, DC, View, template, searchTreeView, Events, MLRes) {
+], function ($, Chaplin, C, DC, View, template, searchTreeView, Events, MLRes, ResourceManager) {
 
     'use strict';
 
@@ -21,8 +22,8 @@ define([
     };
 
     var c = {
-        FAOSTAT_URL:"http://faostat3.fao.org/wds/rest/groupsanddomains/faostatdb/E" ,
-        FAOSTAT_PREFIX_UID : "FAOSTAT_"
+        FAOSTAT_URL: "http://faostat3.fao.org/wds/rest/groupsanddomains/faostatdb/E",
+        FAOSTAT_PREFIX_UID: "FAOSTAT_"
     }
 
     var SearchView = View.extend({
@@ -101,7 +102,7 @@ define([
 
                 }).on('select_node.jstree', function (e, data) {
 
-                    amplify.publish('searchTreeView_resourceSelected', {metadata: {uid: c.FAOSTAT_PREFIX_UID + data.node.id}});
+                    amplify.publish('searchTreeView_resourceSelected', { metadata: { uid: c.FAOSTAT_PREFIX_UID + data.node.id } });
 
                 });
             });
@@ -115,16 +116,39 @@ define([
         selectResource: function (res) {
             var succ = null;
             var err = function () {
-                new PNotify({title: '', text: MLRes.errorLoadinResource, type: 'error'});
+                new PNotify({ title: '', text: MLRes.errorLoadinResource, type: 'error' });
+            }
+            var noData = function () {
+                var defResource = {
+                    metadata: {
+                        dsd: {
+                            contextSystem: "FAOSTAT"
+                        },
+                        meContent: {
+                            resourceRepresentationTypeLabel: { EN: "Dataset" },
+                            resourceRepresentationType: "dataset"
+                        }
+                    }
+                };
+
+                defResource.metadata.uid = res.metadata.uid;
+                if (res.metadata.version)
+                    dedefResourcefDSD.metadata.version = res.metadata.version;
+                var success = function () {
+                    amplify.publish('searchTreeView_resourceSelected', defResource);
+                };
+                var complete = null;
+                var err = function () {
+                    new PNotify({ title: '', text: "Error creating resource", type: 'error' });
+                };
+                ResourceManager.createMeta(defResource, success, complete, err);
             }
 
-            Chaplin.mediator.publish(Events.RESOURCE_SELECT, res, succ, err);
+            Chaplin.mediator.publish(Events.RESOURCE_SELECT, res, succ, err, noData);
         },
 
         dispose: function () {
-
             amplify.unsubscribe('searchTreeView_resourceSelected', this.selectResource);
-
             View.prototype.dispose.call(this, arguments);
         }
     });
