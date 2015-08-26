@@ -119,6 +119,9 @@ define([
                 new PNotify({ title: '', text: MLRes.errorLoadinResource, type: 'error' });
             }
             var noData = function () {
+                if (!confirm("There are no metadata for this Domain, do you want to create one?")) {
+                    return;
+                }
                 var defResource = {
                     metadata: {
                         dsd: {
